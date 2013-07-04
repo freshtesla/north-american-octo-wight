@@ -5,12 +5,28 @@
 
 		<!-- Viewport mobile tag for sensible mobile support -->
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+      <!-- Some fonts! I love fonts. -->
+      <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,100' rel='stylesheet' type='text/css'>
 		
 		<!-- Stylesheets from your assets folder are included here -->
 		<%- assets.css() %>
+      <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.2.0/pure-min.css">
 	</head>
 
 	<body>
+      <div class="pure-menu pure-menu-open pure-menu-horizontal" id="menu">
+         <ul>
+            <li class="pure-menu-selected"><a href="#">DASH</a></li>
+            <li><a href="#">CR</a></li>
+            <li><a href="#">QA</a></li>
+            <li><a href="#">READY</a></li>
+            <li><a href="#">STALE</a></li>
+            <li><a href="#">ADOPTIONS</a></li>
+         </ul>
+      </div>
+
+
 		<%- body %>
 
 		<!-- Templates from your view path are included here -->
