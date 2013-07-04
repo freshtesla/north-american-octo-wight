@@ -1,21 +1,52 @@
 <div id="content" class="pure-g">
    <div class="pure-u-1-2 pulls">
-      <h2> </h2>
-      <% for(var i=0; i<14 /*pulls.length*/; i++) { %>
-         <div class="pull">
-            <span><a href=''><%= "Pull title!"/*pulls[i].name*/ %></a></span>
+      <h2>Needs CR</h2>
+      <% for(var i=0; i<pull.length; i++) { %>
+        <% if (pull[i].st.cr < 2 /*require.cr*/) { %>
+         <div class="pull needs-cr">
+            <span><a href='<%= repo + pull[i].number %>'><%= pull[i].name %></a></span>
             <ul class="inline-list">
                <li>
-                  <strong>CR:</strong> 3
+                  <strong>CR:</strong> <%= pull[i].st.cr %>
                </li>
                <li>
-                  <strong>QA:</strong> 1
-               </li>
-               <li>
-                  <strong>CI:</strong> PASS
+                  <strong>QA:</strong> <%= pull[i].st.qa %>
                </li>
             </ul>
          </div>
+        <% } %>
+      <% } %>
+      <h2>Needs QA</h2>
+      <% for(var i=0; i<pull.length; i++) { %>
+        <% if (!pull[i].st.qa) { %>
+         <div class="pull needs-qa">
+            <span><a href='<%= repo + pull[i].number %>'><%= pull[i].name %></a></span>
+            <ul class="inline-list">
+               <li>
+                  <strong>CR:</strong> <%= pull[i].st.cr %>
+               </li>
+               <li>
+                  <strong>QA:</strong> <%= pull[i].st.qa %>
+               </li>
+            </ul>
+         </div>
+        <% } %>
+      <% } %>
+      <h2>Good to go</h2>
+      <% for(var i=0; i<pull.length; i++) { %>
+        <% if (pull[i].st.cr > 1 && pull[i].st.qa) { %>
+         <div class="pull good-to-go">
+            <span><a href='<%= repo + pull[i].number %>'><%= pull[i].name %></a></span>
+            <ul class="inline-list">
+               <li>
+                  <strong>CR:</strong> <%= pull[i].st.cr %>
+               </li>
+               <li>
+                  <strong>QA:</strong> <%= pull[i].st.qa %>
+               </li>
+            </ul>
+         </div>
+        <% } %>
       <% } %>
    </div>
 </div>
