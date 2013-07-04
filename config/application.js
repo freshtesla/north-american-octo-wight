@@ -6,6 +6,7 @@ var verifyHandler = function (token, tokenSecret, profile, done) {
   console.log(token);
   console.log(tokenSecret);
   console.log(profile);
+  profile.token = token;
   return done(null, profile);
 };
 

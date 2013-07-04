@@ -17,7 +17,7 @@ var AuthController = {
     },
 
     'github': function (req, res) {
-        passport.authenticate('github', { failureRedirect: '/login' },
+        passport.authenticate('github', { scope: ['repo'], failureRedirect: '/login' },
             function (err, user) {
                 req.logIn(user, function (err) {
                     if (err) {
