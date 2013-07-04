@@ -24,10 +24,13 @@ body {
 .pull span {
    font-size: 1.125em;
 }
-
 .inline-list li {
    font-size: .75em;
    display: inline;
    list-style-type: none;
    padding-right: 20px;
+}
+.splashimage {
+   background: url('https://d17kynu4zpq5hy.cloudfront.net/igi/overlord/25uhbFFqeFqwbsdH.large') no-repeat 0% 40%;
+   background-size: 100%;
 }
