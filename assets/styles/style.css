@@ -37,3 +37,9 @@ body {
    background: url('https://d17kynu4zpq5hy.cloudfront.net/igi/overlord/25uhbFFqeFqwbsdH.large') no-repeat 0% 40%;
    background-size: 100%;
 }
+.big-text {
+   font-size: 1.25em;
+}
+.high-contrast {
+   color: white;
+}
