@@ -4,7 +4,8 @@
       <% for(var i=0; i<pull.length; i++) { %>
         <% if (pull[i].st.cr < 2 /*require.cr*/) { %>
          <div class="pull needs-cr">
-            <span><a href='<%= repo + "pull/" + pull[i].number %>'><%= pull[i].name %></a></span>
+            <span><a href='<%= repo + "pull/" + pull[i].number %>'>#<%= pull[i].number %></a></span>
+            <p><%= pull[i].name %></p>
             <ul class="inline-list">
                <li>
                   <strong>CR:</strong> <%= pull[i].st.cr %>
@@ -22,7 +23,8 @@
       <% for(var i=0; i<pull.length; i++) { %>
         <% if (!pull[i].st.qa) { %>
          <div class="pull needs-qa">
-            <span><a href='<%= repo + "pull/" + pull[i].number %>'><%= pull[i].name %></a></span>
+            <span><a href='<%= repo + "pull/" + pull[i].number %>'>#<%= pull[i].number %></a></span>
+            <p><%= pull[i].name %></p>
             <ul class="inline-list">
                <li>
                   <strong>CR:</strong> <%= pull[i].st.cr %>
@@ -40,7 +42,8 @@
       <% for(var i=0; i<pull.length; i++) { %>
         <% if (pull[i].st.cr > 1 && pull[i].st.qa) { %>
          <div class="pull good-to-go">
-            <span><a href='<%= repo + "pull/" + pull[i].number %>'><%= pull[i].name %></a></span>
+            <span><a href='<%= repo + "pull/" + pull[i].number %>'>#<%= pull[i].number %></a></span>
+            <p><%= pull[i].name %></p>
             <ul class="inline-list">
                <li>
                   <strong>CR:</strong> <%= pull[i].st.cr %>
