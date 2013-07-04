@@ -64,26 +64,30 @@ function parsePullComments(repo, token, fn) {
             } else {
               return null;
             }
-          }).toArray();
+          });
           var cr = data.map(function(com) {
             if (com.body.indexOf('CR :+1:') !== -1) {
               return { time: com.created_at, user: com.user };
             } else {
               return null;
             }
-          }).toArray();
+          });
+          console.log(data);
+          console.log(cr);
+          console.log(qa);
           var result = {
             name: pull.title,
             number: pull.number,
             st: { qa: qa.length, cr: cr.length },
             allConfims: { qa: qa, cr: cr}
             };
+          console.log(result);
           allPulls.push(result);
 
         });
         console.log(allPulls);
         return allPulls;
-      }).toArray();
+      });
       fn(pulls, repo);
   });
 }
@@ -98,7 +102,6 @@ index: function (req, res) {
               repo: "north-american-octo-wight"
               };
 
-      console.log(req.user);
       parsePullComments(repo, req.user.token, function(pulls, repo) {
             res.view( { pull: pulls, repo : repo.url } );
             });
