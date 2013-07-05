@@ -8,7 +8,7 @@ module.exports = {
 
 		// Simple attribute:
     name: 'STRING',
-    pull: 'INTEGER',
+    number: 'INTEGER',
     req: {
         type: 'STRING',
         defaultValue: '{ "CR": 2, "QA": 1 }'
@@ -16,7 +16,9 @@ module.exports = {
     st: {
         typ: 'STRING',
         defaultValue: '{ "CR": 0, "QA": 0 }'
-    }
+    },
+    desc: 'STRING',
+    allConfirms: 'STRING'
 
 		// Or for more flexibility:
 		// phoneNumber: {

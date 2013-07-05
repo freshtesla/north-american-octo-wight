@@ -56,8 +56,7 @@ function getComments(pull, repo, token, fn) {
 
 function parsePullComments(repo, token, fn) {
   getPulls(repo, token, function(err, data) {
-
-      pulls = []
+      pulls = [];
 
       for (var i=0; i<data.length; i++) {
         var pull = {
@@ -96,17 +95,21 @@ function getComs(data, fn) {
       st: { qa: qa.length, cr: cr.length },
       allConfims: { qa: qa, cr: cr}
       };
+    Pull.create(result);
     fn(null, result);
   });
 }
 
 var HomeController = {
 
-index: function (req, res) {
-      parsePullComments(sails.config.repo, req.user.token, function(pulls, repo) {
-            res.view( { pull: pulls, repo : repo.url } );
-            });
+    refresh: function (req, res) {
+           parsePullComments(sails.config.repo, req.user.token, function(pulls, repo) {
+               res.render('index', { pull: pulls, repo : repo.url } );
+               });
+         },
 
-       }
+    index: function (req, res) {
+         res.view( { pull: Pull.findAll, repo: sails.config.repo.url } );
+    }
 };
 module.exports = HomeController;
