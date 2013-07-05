@@ -21,9 +21,9 @@ module.exports.auth = {
     // YOUR-CLIENT-SECRET with the generated keys.
 
     github: {
-        clientID: "a3646fa342d5324ecd35",
-        clientSecret: "c0a8632293e1bc0a263cb295f708ace4147530c8",
-        callbackURL:"http://pulldash.herokuapp.com/auth/github/callback"
+        clientID: process.env.cI,
+        clientSecret: process.env.cS,
+        callbackURL: process.env.cbu
     }
 }
 
