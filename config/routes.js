@@ -27,6 +27,10 @@ module.exports.routes = {
 		controller	: 'home'
 	},
 
+  'get /refresh' : {
+    controller  : 'home',
+    action      : 'refresh'
+  }
 	// If you want to set up a route only for a particular HTTP method/verb 
 	// (GET, POST, PUT, DELETE) you can specify the verb before the path:
 	// 'post /signup': {
