@@ -55,24 +55,23 @@ function getComments(pull, repo, token, fn) {
 
 function parsePullComments(repo, token, fn) {
   getPulls(repo, token, function(err, data) {
-      pulls = data.map(function(pull) {
-        var allPulls = [];
+      var pulls = []
+      async.each(data, function(pull) {
         getComments(pull, repo, token, function(err, data) {
           var qa = data.map(function(com) {
             if (com.body.indexOf('QA :koala:') !== -1) {
               return { time: com.created_at, user: com.user };
-            } else {
-              return null;
             }
           });
           var cr = data.map(function(com) {
             if (com.body.indexOf('CR :+1:') !== -1) {
               return { time: com.created_at, user: com.user };
-            } else {
-              return null;
             }
           });
-          console.log(data);
+
+          cr = (cr.indexOf(undefined) !== -1) ? [] : cr;
+          qa = (qa.indexOf(undefined) !== -1) ? [] : qa;
+
           console.log(cr);
           console.log(qa);
           var result = {
@@ -82,13 +81,11 @@ function parsePullComments(repo, token, fn) {
             allConfims: { qa: qa, cr: cr}
             };
           console.log(result);
-          allPulls.push(result);
+          pulls.push(result);
 
         });
-        console.log(allPulls);
-        return allPulls;
-      });
-      fn(pulls, repo);
+        console.log(pulls);
+      }, fn(pulls, repo));
   });
 }
 
