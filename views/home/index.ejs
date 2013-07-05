@@ -5,18 +5,7 @@
       <h2>Needs CR</h2>
       <% for(var i=0; i<pull.length; i++) { %>
         <% if (pull[i].st.cr < 2 /*require.cr*/) { %>
-         <div class="pull needs-cr">
-            <span><a href='<%= repo + "pull/" + pull[i].number %>'>#<%= pull[i].number %></a></span>
-            <p><%= pull[i].name %></p>
-            <ul class="inline-list">
-               <li>
-                  <strong>CR:</strong> <%= pull[i].st.cr %>
-               </li>
-               <li>
-                  <strong>QA:</strong> <%= pull[i].st.qa %>
-               </li>
-            </ul>
-         </div>
+            <%- partial('partials/pull', {locals: {pull: pull[i]}}) %>
         <% } %>
       <% } %>
    </div>
@@ -24,18 +13,7 @@
       <h2>Needs QA</h2>
       <% for(var i=0; i<pull.length; i++) { %>
         <% if (!pull[i].st.qa) { %>
-         <div class="pull needs-qa">
-            <span><a href='<%= repo + "pull/" + pull[i].number %>'>#<%= pull[i].number %></a></span>
-            <p><%= pull[i].name %></p>
-            <ul class="inline-list">
-               <li>
-                  <strong>CR:</strong> <%= pull[i].st.cr %>
-               </li>
-               <li>
-                  <strong>QA:</strong> <%= pull[i].st.qa %>
-               </li>
-            </ul>
-         </div>
+            <%- partial('partials/pull', {locals: {pull: pull[i]}}) %>
         <% } %>
       <% } %>
    </div>
@@ -43,18 +21,7 @@
       <h2>Good to go</h2>
       <% for(var i=0; i<pull.length; i++) { %>
         <% if (pull[i].st.cr > 1 && pull[i].st.qa) { %>
-         <div class="pull good-to-go">
-            <span><a href='<%= repo + "pull/" + pull[i].number %>'>#<%= pull[i].number %></a></span>
-            <p><%= pull[i].name %></p>
-            <ul class="inline-list">
-               <li>
-                  <strong>CR:</strong> <%= pull[i].st.cr %>
-               </li>
-               <li>
-                  <strong>QA:</strong> <%= pull[i].st.qa %>
-               </li>
-            </ul>
-         </div>
+            <%- partial('partials/pull', {locals: {pull: pull[i]}}) %>
         <% } %>
       <% } %>
    </div>
