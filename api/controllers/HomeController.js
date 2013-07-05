@@ -103,13 +103,7 @@ function getComs(data, fn) {
 var HomeController = {
 
 index: function (req, res) {
-         var repo = {
-              url: "https://github.com/freshvolk/north-american-octo-wight/",
-              owner: "freshvolk",
-              repo: "north-american-octo-wight"
-              };
-
-      parsePullComments(repo, req.user.token, function(pulls, repo) {
+      parsePullComments(sails.config.repo, req.user.token, function(pulls, repo) {
             res.view( { pull: pulls, repo : repo.url } );
             });
 
