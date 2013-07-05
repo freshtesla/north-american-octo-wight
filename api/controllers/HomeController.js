@@ -3,7 +3,8 @@
 	-> controller
 ---------------------*/
 var querystring = require('querystring')
-  , https = require('https');
+  , https = require('https')
+  , async = require('async');
 
 
 function githubAPI(endpoint, method, params, token, fn, shouldJSON) {
@@ -55,40 +56,49 @@ function getComments(pull, repo, token, fn) {
 
 function parsePullComments(repo, token, fn) {
   getPulls(repo, token, function(err, data) {
-      var pulls = []
-      async.each(data, function(pull) {
-        getComments(pull, repo, token, function(err, data) {
-          var qa = data.map(function(com) {
-            if (com.body.indexOf('QA :koala:') !== -1) {
-              return { time: com.created_at, user: com.user };
-            }
-          });
-          var cr = data.map(function(com) {
-            if (com.body.indexOf('CR :+1:') !== -1) {
-              return { time: com.created_at, user: com.user };
-            }
-          });
 
-          cr = (cr.indexOf(undefined) !== -1) ? [] : cr;
-          qa = (qa.indexOf(undefined) !== -1) ? [] : qa;
+      pulls = []
 
-          console.log(cr);
-          console.log(qa);
-          var result = {
-            name: pull.title,
-            number: pull.number,
-            st: { qa: qa.length, cr: cr.length },
-            allConfims: { qa: qa, cr: cr}
-            };
-          console.log(result);
-          pulls.push(result);
-
-        });
-        console.log(pulls);
-      }, fn(pulls, repo));
+      for (var i=0; i<data.length; i++) {
+        var pull = {
+          repo: repo,
+          token: token,
+          pull: data[i]
+          };
+        pulls.push(pull);
+      }
+      async.map(pulls, getComs, function(err, pulls) {
+        fn(pulls, repo);
+      });
   });
 }
 
+function getComs(data, fn) {
+  var pull = data.pull;
+  getComments(pull, data.repo, data.token, function(err, data) {
+    var qa = data.map(function(com) {
+      if (com.body.indexOf('QA :koala:') !== -1) {
+        return { time: com.created_at, user: com.user };
+      }
+    });
+    var cr = data.map(function(com) {
+      if (com.body.indexOf('CR :+1:') !== -1) {
+        return { time: com.created_at, user: com.user };
+      }
+    });
+
+    cr = (cr.indexOf(undefined) !== -1) ? [] : cr;
+    qa = (qa.indexOf(undefined) !== -1) ? [] : qa;
+
+    var result = {
+      name: pull.title,
+      number: pull.number,
+      st: { qa: qa.length, cr: cr.length },
+      allConfims: { qa: qa, cr: cr}
+      };
+    fn(null, result);
+  });
+}
 
 var HomeController = {
 
