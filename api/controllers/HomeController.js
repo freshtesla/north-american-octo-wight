@@ -87,8 +87,8 @@ function getComs(data, fn) {
       }
     });
 
-    cr = (cr.indexOf(undefined) !== -1) ? [] : cr;
-    qa = (qa.indexOf(undefined) !== -1) ? [] : qa;
+    cr = cr.filter(function(n){return n});
+    qa = qa.filter(function(n){return n});
 
     var result = {
       name: pull.title,
