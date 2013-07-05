@@ -29,6 +29,6 @@ module.exports.auth = {
 
 module.exports.repo = {
   url: "http://github.com/ifixit/ifixit/",
-  owner: 'freshvolk',
-  repo: 'north-american-octo-wight'
+  owner: 'ifixit',
+  repo: 'ifixit'
 }
