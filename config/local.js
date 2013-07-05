@@ -23,7 +23,7 @@ module.exports.auth = {
     github: {
         clientID: "a3646fa342d5324ecd35",
         clientSecret: "c0a8632293e1bc0a263cb295f708ace4147530c8",
-        callbackURL:"http://ks3278542.kimsufi.com:1337/auth/github/callback"
+        callbackURL:"http://pulldash.herokuapp.com/auth/github/callback"
     }
 }
 
