@@ -103,9 +103,6 @@ function getComs(data, fn) {
 
       // The Pull was created successfully!
       }else {
-        console.log("Pull created:", pull);
-        console.log("Result conf", result.allConfirms);
-        console.log("Pull conf", pull.allConfirms);
         if (pull.allConfirms !== result.allConfirms) {
           Pull.update({number: pull.number}, result, function(err, pull) {
 
@@ -115,7 +112,7 @@ function getComs(data, fn) {
 
             // The Pull was created successfully!
             }else {
-              console.log("Pull updated", pull);
+              console.log("Pull updated", pull.number);
             }
           });
         }
