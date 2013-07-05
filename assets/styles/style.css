@@ -2,6 +2,9 @@ body {
    font-family:'Roboto';
    font-weight:200;
 }
+a {
+   color: #84B9D5;
+}
 
 #content {
    width: 100%;
@@ -11,14 +14,14 @@ body {
 }
 
 #menu {
-   background-color: #FF4C00;
+   background-color: #84B9D5;
    font-size: 1.25em;
 }
 
 .pulls {
 }
 .pull {
-   border-bottom: 1px solid #FF4C00;
+   border-bottom: 1px solid #84B9D5;
    margin: 2px;
    width: 50%;
    margin-left: auto;
@@ -42,4 +45,10 @@ body {
 }
 .high-contrast {
    color: white;
+}
+.good {
+   color: green;
+}
+.bad {
+   color: red;
 }

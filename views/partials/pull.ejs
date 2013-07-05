@@ -2,10 +2,10 @@
    <span><a href='<%= repo + "pull/" + pull.number %>'>#<%= pull.number %></a></span>
    <p><%= pull.name %></p>
    <ul class="inline-list">
-      <li>
+      <li class="<%= crStatus %>">
          <strong>CR:</strong> <%= pull.st.cr %>
       </li>
-      <li>
+      <li class="<%= qaStatus %>">
          <strong>QA:</strong> <%= pull.st.qa %>
       </li>
    </ul>

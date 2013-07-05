@@ -5,7 +5,10 @@
       <h2>Needs CR</h2>
       <% for(var i=0; i<pull.length; i++) { %>
         <% if (pull[i].st.cr < 2 /*require.cr*/) { %>
-            <%- partial('partials/pull', {locals: {pull: pull[i]}}) %>
+            <%- partial('partials/pull', {locals: 
+               {pull: pull[i], 
+               qaStatus: pull[i].st.qa ? 'good' : 'bad', 
+               crStatus: pull[i].st.cr > 1 /*require.cr*/? 'good' : 'bad'}}) %>
         <% } %>
       <% } %>
    </div>
@@ -13,7 +16,10 @@
       <h2>Needs QA</h2>
       <% for(var i=0; i<pull.length; i++) { %>
         <% if (!pull[i].st.qa) { %>
-            <%- partial('partials/pull', {locals: {pull: pull[i]}}) %>
+            <%- partial('partials/pull', {locals: 
+               {pull: pull[i], 
+               qaStatus: pull[i].st.qa ? 'good' : 'bad', 
+               crStatus: pull[i].st.cr > 1 ? 'good' : 'bad'}}) %>
         <% } %>
       <% } %>
    </div>
@@ -21,7 +27,10 @@
       <h2>Good to go</h2>
       <% for(var i=0; i<pull.length; i++) { %>
         <% if (pull[i].st.cr > 1 && pull[i].st.qa) { %>
-            <%- partial('partials/pull', {locals: {pull: pull[i]}}) %>
+            <%- partial('partials/pull', {locals: 
+               {pull: pull[i], 
+               qaStatus: pull[i].st.qa ? 'good' : 'bad', 
+               crStatus: pull[i].st.cr > 1 ? 'good' : 'bad'}}) %>
         <% } %>
       <% } %>
    </div>
